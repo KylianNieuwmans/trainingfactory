@@ -20,6 +20,6 @@ class BezoekerController extends Controller
      */
     public function showAction()
     {
-        return $this->render('default/bezoeker.html.twig');
+        return $this->render('/bezoeker/index.html.twig');
     }
 }
