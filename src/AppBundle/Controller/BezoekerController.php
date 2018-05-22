@@ -9,9 +9,11 @@
 namespace AppBundle\Controller;
 
 
+use http\Env\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class BezoekerController extends Controller
 {
@@ -21,5 +23,17 @@ class BezoekerController extends Controller
     public function showAction()
     {
         return $this->render('/bezoeker/index.html.twig');
+    }
+    /**
+     * @Route("/bezoeker/inloggen")
+     */
+    public function loginAction(Request $request, AuthenticationUtils $authUtils)
+    {
+        $error = $authUtils->getLastAuthenticationError();
+
+        $lastUsername = $authUtils->getLastUsername();
+
+        return $this->render();
+
     }
 }
