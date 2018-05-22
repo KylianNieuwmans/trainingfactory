@@ -107,9 +107,37 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // app_bezoeker_show
-        if ('/bezoeker' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\BezoekerController::showAction',  '_route' => 'app_bezoeker_show',);
+        elseif (0 === strpos($pathinfo, '/bezoeker')) {
+            // home
+            if ('/bezoeker' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\BezoekerController::showAction',  '_route' => 'home',);
+            }
+
+            // app_bezoeker_login
+            if ('/bezoeker/inlog' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\BezoekerController::loginAction',  '_route' => 'app_bezoeker_login',);
+            }
+
+            // gedrag
+            if ('/bezoeker/gedrag' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\BezoekerController::gedragAction',  '_route' => 'gedrag',);
+            }
+
+            // aanbod
+            if ('/bezoeker/aanbod' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\BezoekerController::aanbodAction',  '_route' => 'aanbod',);
+            }
+
+            // contact
+            if ('/bezoeker/contact' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\BezoekerController::contactAction',  '_route' => 'contact',);
+            }
+
+        }
+
+        // logout
+        if ('/logout' === $pathinfo) {
+            return array('_route' => 'logout');
         }
 
         if ('/' === $pathinfo && !$allow) {

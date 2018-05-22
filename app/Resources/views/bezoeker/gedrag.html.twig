@@ -1,0 +1,39 @@
+{# app/Resources/views/bezoeker/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="text-center">
+        <img src="{{ asset('images.jpeg') }}" width="100px" height="100px">
+        <h1>Trainingfactory</h1>
+    </div>
+    <nav class="navbar navbar-default">
+        <a class="col-md-2" href="{{ path('home') }}">Home</a>
+        <a class="col-md-2" href="{{ path('gedrag') }}">Gedragsregels</a>
+        <a class="col-md-2" href="{{ path('aanbod') }}">Les aanbod</a>
+        <a class="col-md-2" href="{{ path('contact') }}">Contact</a>
+        <a class="col-md-2">Inloggen</a>
+    </nav>
+
+    <h2 class="text-center">Gedrag Regels</h2>
+    <p>Erecode van vechtsport
+    “Vechten gebeurt alleen op de mat of in de ring, en nooit op straat. De technieken die je worden aangeleerd mogen alleen worden gebruikt ter verdediging van jezelf of anderen. Je mag nooit je vechttechnieken gebruiken tegen iemand die zich niet kan verdedigen.
+        <br>Eer, loyaliteit en trouw zijn aan de code zijn belangrijker dan welke vechttechniek, graduatie of titel dan ook.”
+    </p>
+    <ul class="list">
+        <li class="list-item">Het gebruik van doping en stimulerende middelen is verboden.</li>
+        <li class="list-item">Het gebruik van slecht onderhouden en/of onveilige materialen en hulpmiddelen is verboden geldt zowel voor de materialen en hulpmiddelen van de organisatie als die van de sporter.</li>
+        <li class="list-item">Er is respect voor onze partner (en zijn / haar niveau).</li>
+        <li class="list-item">We zijn altijd sportief ook al zijn anderen dat niet.</li>
+        <li class="list-item">Iedereen draagt tijdens de training voldoende beschermingsmaterialen om letsel en een kwetsuur te voorkomen.</li>
+        <li class="list-item">Het lid is verplicht zijn of haar gezondheidstoestand toe te lichten, mocht dit een negatieve invloed hebben op de beoefening van de sport.</li>
+        <li class="list-item">Sieraden, piercings e.d. die letselrisico opleveren voor de drager of anderen worden verwijderd, dan wel afgeplakt.</li>
+        <li class="list-item">Drugsbezit en drugsgebruik in en om het sportcomplex is niet toegestaan en zal direct leiden tot een verbod.</li>
+        <li class="list-item">Discriminatie, schelden, grof taalgebruik, treiteren, pesten, irriteren of kwetsen van wie dan ook wordt niet geaccepteerd, deze gedragsregels gelden ook voor social media en kunnen aanleiding zijn voor sancties.</li>
+        <li class="list-item">Vechten gebeurt alleen op de mat of in de ring, en nooit op straat. De technieken die je worden aangeleerd mogen alleen worden gebruikt ter verdediging van jezelf of anderen. Je mag nooit je vechttechnieken gebruiken tegen iemand die zich niet kan verdedigen.</li>
+        <li class="list-item">Het gebruik van mobiele telefoon of het aanstaan van een mobiele telefoon is verboden in de oefenzaal en tijdens de lessen.</li>
+        <li class="list-item">Het is ten strengste verboden te roken in het gebouw.</li>
+        <li class="list-item">Je bent bij de training minimaal 5 à 10 minuten voor aanvang aanwezig.</li>
+        <li class="list-item">Je beschikt over een goede lichamelijke hygiëne zoals korte en schone nagels, frisse adem etc.</li>
+        <li class="list-item">Het gebruik van doping en stimulerende middelen is verboden.</li>
+    </ul>
+{% endblock %}
