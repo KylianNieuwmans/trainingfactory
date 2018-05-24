@@ -32,7 +32,7 @@ class BezoekerController extends Controller
 
         $lastUsername = $authUtils->getLastUsername();
 
-        return $this->render();
+        return $this->render("inlog.html.twig");
 
     }
 
