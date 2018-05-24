@@ -17,14 +17,14 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class BezoekerController extends Controller
 {
     /**
-     * @Route("/bezoeker")
+     * @Route("/bezoeker", name = "home")
      */
     public function showAction()
     {
         return $this->render('/bezoeker/index.html.twig');
     }
     /**
-     * @Route("/bezoeker/inloggen")
+     * @Route("/bezoeker/inlog")
      */
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
@@ -34,5 +34,29 @@ class BezoekerController extends Controller
 
         return $this->render();
 
+    }
+
+    /**
+     * @Route ("/bezoeker/gedrag", name = "gedrag")
+     */
+    public function gedragAction()
+    {
+        return $this->render('/bezoeker/gedrag.html.twig');
+    }
+
+    /**
+     * @Route ("/bezoeker/aanbod", name = "aanbod")
+     */
+    public function aanbodAction()
+    {
+        return $this->render('/bezoeker/aanbod.html.twig');
+    }
+
+    /**
+     * @Route ("/bezoeker/contact", name = "contact")
+     */
+    public function contactAction()
+    {
+        return $this->render('/bezoeker/contact.html.twig');
     }
 }

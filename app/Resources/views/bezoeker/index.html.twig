@@ -2,5 +2,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Welcome to Symfony!</h1>
+    <div class="text-center">
+        <img src="{{ asset('images.jpeg') }}" width="100px" height="100px">
+        <h1>Trainingfactory</h1>
+    </div>
+    <nav class="navbar navbar-default">
+        <a class="col-md-2" href="{{ path('home') }}">Home</a>
+        <a class="col-md-2" href="{{ path('gedrag') }}">Gedragsregels</a>
+        <a class="col-md-2" href="{{ path('aanbod') }}">Les aanbod</a>
+        <a class="col-md-2" href="{{ path('contact') }}">Contact</a>
+        <a class="col-md-2">Inloggen</a>
+    </nav>
+    <h2 class="text-center">Welkom bij Trainings Centrum Den Haag</h2>
+
+    <p class="text-center">Den Haag Traing Center is een sportschool waar onder professionele begeleiding in een veilige omgeving verschillende soorten martial arts-,
+        <br>indoor bootcamp, personal- en small group trainingen worden aangeboden. Hier kan je je inschrijven op een les of uitschrijven op een les.</p>
 {% endblock %}
