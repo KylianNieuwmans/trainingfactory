@@ -23,8 +23,9 @@ class BezoekerController extends Controller
     {
         return $this->render('/bezoeker/index.html.twig');
     }
+
     /**
-     * @Route("/bezoeker/inlog")
+     * @Route("/bezoeker/inlog", name="inlog")
      */
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
@@ -32,7 +33,7 @@ class BezoekerController extends Controller
 
         $lastUsername = $authUtils->getLastUsername();
 
-        return $this->render("inlog.html.twig");
+        return $this->render("/bezoeker/inlog.html.twig");
 
     }
 
