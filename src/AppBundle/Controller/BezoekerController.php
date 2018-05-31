@@ -25,6 +25,7 @@ class BezoekerController extends Controller
     }
 
 
+
     /**
      * @Route("/bezoeker/login", name="login")
      */
@@ -49,7 +50,7 @@ class BezoekerController extends Controller
         }
         return $this->render('bezoeker/login.html.twig', array(
             'last_username' => $lastUsername,
-            'error'         => $error,
+            'error' => $error,
         ));
     }
 

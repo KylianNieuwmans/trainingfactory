@@ -1,16 +1,23 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    encoders:
+        AppBundle\Entity\Persoon:
+            algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         our_db_provider:
             entity:
-              class: AppBundle:User
-              property: username
+                class: AppBundle:Persoon
+                property: gebruikersnaam
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
+        main:
+            pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
+          # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -20,6 +27,7 @@ security:
             form_login:
               login_path: login
               check_path: login
+              success_handler: app.login_handler
             logout:
               path: /logout
               target: /
