@@ -23,18 +23,36 @@ class BezoekerController extends Controller
     {
         return $this->render('/bezoeker/index.html.twig');
     }
+
+
     /**
-     * @Route("/bezoeker/inlog")
+     * @Route("/bezoeker/login", name="login")
      */
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
+        // get the login error if there is one
         $error = $authUtils->getLastAuthenticationError();
 
+        // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
+        if (isset($error)) {
+            $this->addFlash(
+                'error',
+                'Gegevens kloppen niet. Probeer opnieuw.'
+            );
+        } else {
 
-        return $this->render("inlog.html.twig");
-
+            $this->addFlash(
+                'notice',
+                'Vul uw gegevens in'
+            );
+        }
+        return $this->render('bezoeker/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
     }
+
 
     /**
      * @Route ("/bezoeker/gedrag", name = "gedrag")
