@@ -73,10 +73,16 @@ class Persoon implements UserInterface,\Serializable
      */
     private $woonplaats;
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="boolean")
      */
 
-    private $recht = array();
+    private $is_member;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+
+    private $is_instructeur;
 
 
     public function serialize()
@@ -161,7 +167,17 @@ class Persoon implements UserInterface,\Serializable
 
     public function getRoles()
     {
-        return $this->recht;
+        $roles = ['ROLE_BEZOEKER'];
+        if($this->is_member)
+        {
+            $roles = ['ROLE_USER'];
+        }
+        if($this->is_instructeur)
+        {
+            $roles = ['ROLE_INSTRUCTEUR'];
+        }
+
+        return $roles;
     }
 
     public function getUsername()
