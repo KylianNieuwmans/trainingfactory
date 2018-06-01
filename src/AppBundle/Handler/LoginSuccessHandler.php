@@ -18,7 +18,13 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerI
 
 class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
 {
+    /**
+     * @var RouterInterface $router
+     */
     protected $router;
+    /**
+     * @var AuthorizationCheckerInterface $authorizationchecker
+     */
     protected $authorizationchecker;
 
     public function __construct(RouterInterface $router, AuthorizationCheckerInterface $authorizationChecker)
@@ -26,6 +32,12 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         $this->router = $router;
         $this->authorizationchecker = $authorizationChecker;
     }
+
+    /**
+     * @param Request $request
+     * @param TokenInterface $token
+     * @return Response never null
+     */
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {

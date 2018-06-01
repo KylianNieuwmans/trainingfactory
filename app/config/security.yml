@@ -14,15 +14,6 @@ security:
 
     firewalls:
         main:
-            pattern:    ^/
-            http_basic: ~
-            provider: our_db_provider
-          # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        main:
             anonymous: ~
             form_login:
               login_path: login
@@ -31,6 +22,12 @@ security:
             logout:
               path: /logout
               target: /
+          # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
