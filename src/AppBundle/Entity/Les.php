@@ -59,7 +59,7 @@ class Les implements \Serializable
     {
         list(
             $this->id,
-            ) = $this->unserialize($serialized);
+            ) = unserialize($serialized);
     }
 
     /**

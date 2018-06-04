@@ -102,8 +102,9 @@ class BezoekerController extends Controller
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
+            $this->addFlash("success", "U bent geregistreerd!");
             return $this->redirectToRoute('home');
+
 
         }
 

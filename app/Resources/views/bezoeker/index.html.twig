@@ -2,6 +2,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for flash_message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
     <div class="text-center">
         <img src="{{ asset('images.jpeg') }}" width="100px" height="100px">
         <h1>Trainingfactory</h1>
