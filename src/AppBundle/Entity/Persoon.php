@@ -34,7 +34,7 @@ class Persoon implements UserInterface,\Serializable
     private $voornaam;
 
     /**
-     * @ORM\Column(type="string", length=8)
+     * @ORM\Column(type="string", length=8, nullable=true)
      */
     private $tussenvoegsel;
 
@@ -54,12 +54,12 @@ class Persoon implements UserInterface,\Serializable
      */
     private $startdatum;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $salaris;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
 
     private $persoonsnummer;
@@ -73,13 +73,13 @@ class Persoon implements UserInterface,\Serializable
      */
     private $woonplaats;
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
 
     private $is_member;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
 
     private $is_instructeur;
@@ -157,7 +157,7 @@ class Persoon implements UserInterface,\Serializable
 
     public function setAdres($adres)
     {
-        $this->adres = adres;
+        $this->adres = $adres;
     }
 
     public function getWoonplaats()

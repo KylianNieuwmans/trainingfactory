@@ -9,9 +9,12 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Persoon;
+use AppBundle\Form\PersoonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class BezoekerController extends Controller
@@ -78,4 +81,36 @@ class BezoekerController extends Controller
     {
         return $this->render('/bezoeker/contact.html.twig');
     }
+
+    /**
+     * @Route ("/bezoeker/registreren", name = "registratie")
+     */
+    public function registratieAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        // 1) build the form
+        $user = new Persoon();
+        $form = $this->createForm(PersoonType::class, $user);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
+            // 4) save the User!
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
+
+        }
+
+        return $this->render(
+            'bezoeker/registreren.html.twig',
+            array('form' => $form->createView())
+        );
+    }
+
 }
