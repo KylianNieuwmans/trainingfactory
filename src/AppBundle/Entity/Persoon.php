@@ -84,6 +84,11 @@ class Persoon implements UserInterface,\Serializable
 
     private $is_instructeur;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Les", mappedBy="instructeur")
+     */
+    private $les;
+
 
     public function serialize()
     {

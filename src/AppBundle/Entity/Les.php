@@ -42,6 +42,11 @@ class Les implements \Serializable
      */
     private $training;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Persoon", inversedBy="les")
+     */
+    private $instructeur;
+
     public function serialize()
     {
         return serialize(array(
@@ -55,6 +60,22 @@ class Les implements \Serializable
         list(
             $this->id,
             ) = $this->unserialize($serialized);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInstructeur()
+    {
+        return $this->instructeur;
+    }
+
+    /**
+     * @param mixed $instructeur
+     */
+    public function setInstructeur($instructeur)
+    {
+        $this->instructeur = $instructeur;
     }
 
     /**
@@ -109,6 +130,7 @@ class Les implements \Serializable
     {
         $this->datum = $datum;
     }
+
 
     /**
      * @return mixed

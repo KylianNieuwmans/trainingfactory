@@ -133,4 +133,5 @@ class Training implements \Serializable
     {
         $this->les = $les;
     }
+
 }
