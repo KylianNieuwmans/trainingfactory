@@ -105,7 +105,7 @@ class Persoon implements UserInterface,\Serializable
             $this->id,
             $this->gebruikersnaam,
             $this->wachtwoord,
-            ) = $this->unserialize($serialized);
+            ) = unserialize($serialized);
 
 
     }

@@ -24,5 +24,4 @@ class LidController extends Controller
     {
         return $this->render('/lid/start.html.twig');
     }
-
 }
