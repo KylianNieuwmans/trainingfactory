@@ -33,17 +33,13 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         $this->authorizationchecker = $authorizationChecker;
     }
 
-    /**
-     * @param Request $request
-     * @param TokenInterface $token
-     * @return Response never null
-     */
-
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        if($this->authorizationchecker->isGranted('ROLE_USER'));
+        if($this->authorizationchecker->isGranted('ROLE_USER'))
         {
-            $response = new RedirectResponse($this->router->generate('user'));
+            $response = new RedirectResponse($this->router->generate('lid'));
         }
+
+        return $response;
     }
 }
