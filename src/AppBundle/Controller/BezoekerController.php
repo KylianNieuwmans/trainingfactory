@@ -9,7 +9,9 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\Persoon;
+use AppBundle\Entity\Training;
 use AppBundle\Form\PersoonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -69,9 +71,11 @@ class BezoekerController extends Controller
     /**
      * @Route ("/bezoeker/aanbod", name = "aanbod")
      */
-    public function aanbodAction()
+    public function aanbodAction(Request $request)
     {
-        return $this->render('/bezoeker/aanbod.html.twig');
+        $repository=$this->getDoctrine()->getRepository(Training::class);
+        $training=$repository->findAll();
+        return $this->render('bezoeker/aanbod.html.twig',array('boodschap'=>'Welkom','training'=>$training));
     }
 
     /**
@@ -113,5 +117,4 @@ class BezoekerController extends Controller
             array('form' => $form->createView())
         );
     }
-
 }

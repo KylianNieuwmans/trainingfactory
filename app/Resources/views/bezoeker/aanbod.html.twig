@@ -20,6 +20,11 @@
             </ul>
         </div>
     </nav>
+<h2>Les Aanbod!</h2>
+    {% for trainingen in training %}
+        <ul class="list">
+        <li class="list-item">{{ trainingen.beschrijving}} {{ trainingen.duratie|date('H:i:s') }}</li>
+        </ul>
+    {% endfor %}
 
-    <p>les aanbod</p>
 {% endblock %}
