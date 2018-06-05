@@ -39,7 +39,7 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         {
             $response = new RedirectResponse($this->router->generate('lid'));
         }
-        if($this->authorizationchecker->isGranted('ROLE_INSTRUCTEUR'))
+        elseif($this->authorizationchecker->isGranted('ROLE_INSTRUCTEUR'))
         {
             $response = new RedirectResponse($this->router->generate('admin'));
         }

@@ -32,9 +32,6 @@ class LidController extends Controller
      */
     public function lessenAction()
     {
-        $repository=$this->getDoctrine()->getRepository(Registratie::class);
-        $registratie=$repository->fin;
-
         $repository=$this->getDoctrine()->getRepository(Les::class);
         $lessen=$repository->findAll();
         return $this->render('lid/lessen.html.twig',array('boodschap'=>'Welkom','lessen'=>$lessen));
