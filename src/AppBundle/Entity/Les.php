@@ -182,7 +182,4 @@ class Les implements \Serializable
         $this->training = $training;
     }
 
-
-
-
 }

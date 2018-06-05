@@ -16,7 +16,7 @@
             </ul>
         </div>
     </nav>
-    <h2>Schrijf je in voor de lessen!</h2>
+<h2>Schrijf je in voor de lessen!</h2>
     <table class="table">
         <th class="col-md-auto">Naam</th>
         <th class="col-md-auto">Instructeur</th>
@@ -24,14 +24,36 @@
         <th class="col-md-auto">Tijd</th>
         <th class="col-md-auto">Datum</th>
         <th class="col-md-auto">Inschrijven</th>
-    {% for les in lessen %}
-        <tr>
-            <td>{{ les.training.beschrijving}}</td>
-            <td>{{ les.instructeur.voornaam}}</td>
-            <td>{{ les.locatie}}</td>
-            <td>{{ les.tijd|date('H:i:s')}}</td>
-            <td>{{ les.datum|date('d-m-y')}}</td>
-        </tr>
-    {% endfor %}
+        {% for les in lessen %}
+            <tr>
+                <td>{{ les.training.beschrijving}}</td>
+                <td>{{ les.instructeur.voornaam}}</td>
+                <td>{{ les.locatie}}</td>
+                <td>{{ les.tijd|date('H:i:s')}}</td>
+                <td>{{ les.datum|date('d-m-y')}}</td>
+                <td><a href="{{ path('inschrijven', {"lesId":les.id}) }}">Inschrijven</a></td>
+            </tr>
+        {% endfor %}
     </table>
+
+    <h2>Lessen waarvoor je ingeschreven staat</h2>
+    <table class="table">
+        <th class="col-md-auto">Naam</th>
+        <th class="col-md-auto">Instructeur</th>
+        <th class="col-md-auto">Locatie</th>
+        <th class="col-md-auto">Tijd</th>
+        <th class="col-md-auto">Datum</th>
+        <th class="col-md-auto">Uitschrijven</th>
+        {% for les in lessen %}
+            <tr>
+                <td>{{ les.training.beschrijving}}</td>
+                <td>{{ les.instructeur.voornaam}}</td>
+                <td>{{ les.locatie}}</td>
+                <td>{{ les.tijd|date('H:i:s')}}</td>
+                <td>{{ les.datum|date('d-m-y')}}</td>
+                <td><a href="{{ path('inschrijven', {"lesId":les.id}) }}">Inschrijven</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
 {% endblock %}
