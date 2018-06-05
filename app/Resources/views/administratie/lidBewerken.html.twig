@@ -19,5 +19,12 @@
         </div>
     </nav>
 
-    <h2 class="text-center">Hallo admin!</h2>
+    {% form_theme form 'bootstrap_4_layout.html.twig'%}
+    <div class='col-md-3'>
+        <h3>Gegevens bewerken!</h3>
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+
 {% endblock %}
