@@ -21,10 +21,15 @@
         </div>
     </nav>
 <h2>Les Aanbod!</h2>
-    {% for trainingen in training %}
-        <ul class="list">
-        <li class="list-item">{{ trainingen.beschrijving}} {{ trainingen.duratie|date('H:i:s') }}</li>
-        </ul>
-    {% endfor %}
+    <table class="table">
+        <th class="col-sm-1">Naam</th>
+        <th class="col-sm-1">Tijd</th>
+        {% for training in trainingen %}
+            <tr>
+                <td>{{ training.beschrijving}}</td>
+                <td>{{ training.duratie|date('H:i:s')}}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
 {% endblock %}

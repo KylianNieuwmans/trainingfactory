@@ -74,8 +74,8 @@ class BezoekerController extends Controller
     public function aanbodAction(Request $request)
     {
         $repository=$this->getDoctrine()->getRepository(Training::class);
-        $training=$repository->findAll();
-        return $this->render('bezoeker/aanbod.html.twig',array('boodschap'=>'Welkom','training'=>$training));
+        $trainingen=$repository->findAll();
+        return $this->render('bezoeker/aanbod.html.twig',array('boodschap'=>'Welkom','trainingen'=>$trainingen));
     }
 
     /**
