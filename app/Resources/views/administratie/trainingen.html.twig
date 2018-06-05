@@ -8,11 +8,16 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ path('lid') }}">Trainingfactory</a>
+                <a class="navbar-brand" href="{{ path('admin') }}">Trainingfactory</a>
             </div>
             <ul class="nav navbar-nav">
+                <li class="col-3"> <a href="{{ path('trainingen') }}">Trainingen</a></li>
+                <li class="col-3"> <a href="{{ path('lessen') }}">Lessen</a></li>
+                <li class="col-3"> <a href="{{ path('leden') }}">Leden</a></li>
                 <li class="col-3"> <a href="{{ path('logout') }}">Logout</a></li>
             </ul>
         </div>
     </nav>
+
+    <h2 class="text-center">Hallo admin!</h2>
 {% endblock %}

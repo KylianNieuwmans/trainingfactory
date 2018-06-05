@@ -43,7 +43,7 @@ class PersoonType extends AbstractType
                 'first_options'  => array('label' => 'Wachtwoord'),
                 'second_options' => array('label' => 'Herhaal Wachtwoord'),
             ))
-            ->add('registreer', SubmitType::class);
+            ->add('Ok', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

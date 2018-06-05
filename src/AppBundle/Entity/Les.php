@@ -18,7 +18,7 @@ class Les implements \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="time")
      */
     private $tijd;
 
