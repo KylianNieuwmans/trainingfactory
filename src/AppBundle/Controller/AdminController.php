@@ -9,7 +9,9 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Les;
 use AppBundle\Entity\Persoon;
+use AppBundle\Form\LesType;
 use AppBundle\Form\PersoonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -26,12 +28,15 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/administratie", name = "lessen")
+     * @Route("/administratie/lessen", name = "beheerLessen")
      */
     public function showLessenAction()
     {
 
-        return $this->render('/administratie/lessen.html.twig');
+        $repository=$this->getDoctrine()->getRepository(Les::class);
+        $lessen=$repository->findAll();
+
+        return $this->render('administratie/lessen.html.twig',array('boodschap'=>'Welkom','lessen'=>$lessen));
     }
 
     /**
@@ -53,7 +58,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route ("/bewerken/leden/bewerken/{lidId}", name = "lidBewerken")
+     * @Route ("/administratie/leden/lidBewerken/{lidId}", name = "lidBewerken")
      */
     public function wijzigLidAction(Request $request,  $lidId)
     {
@@ -80,12 +85,12 @@ class AdminController extends Controller
         }
 
         return $this->render(
-            'administratie/bewerken.html.twig',
+            '/administratie/lidBewerken.html.twig',
             array('form' => $form->createView())
         );
     }
     /**
-     * @Route("/bewerken/leden/verwijderen/{lidId}", name = "lidVerwijderen")
+     * @Route("/administratie/leden/verwijderen/{lidId}", name = "lidVerwijderen")
      */
     public function lidVerwijderenAction($lidId)
     {
@@ -97,7 +102,84 @@ class AdminController extends Controller
         $em->remove($user);
         $em->flush();
 
-        $this->addFlash("success", "Uw gegevens zijn gewijzigd!");
+        $this->addFlash("success", "Uw gegevens zijn verwijderd!");
+        return $this->redirectToRoute('admin');
+    }
+
+    /**
+     * @Route ("/administratie/lessen/lesToevoegen/{lesId}", name = "lesToevoegen")
+     */
+    public function lesToevoegenAction(Request $request)
+    {
+        // 1) build the form
+        $les = new Les();
+        $form = $this->createForm(LesType::class, $les);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            // 4) save the User!
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($les);
+            $entityManager->flush();
+            $this->addFlash("success", "U bent geregistreerd!");
+            return $this->redirectToRoute('beheerLessen');
+
+
+        }
+
+        return $this->render(
+            '/administratie/lesBewerken.html.twig',
+            array('form' => $form->createView())
+        );
+    }
+
+    /**
+     * @Route ("/administratie/lessen/lesBewerken/{lesId}", name = "lesBewerken")
+     */
+    public function wijzigLesAction(Request $request,  $lesId)
+    {
+        $repository = $this->getDoctrine()->getRepository(Les::class);
+        $les = $repository->find($lesId);
+
+        if(empty($les))
+        {
+            $this->addFlash('error', 'De les kan niet gevonden worden');
+            return $this->redirectToRoute('admin');
+        }
+        $form = $this->createForm(LesType::class, $les);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($les);
+            $entityManager->flush();
+            $this->addFlash("success", "De gegevens zijn veranderd!");
+            return $this->redirectToRoute('beheerLessen');
+        }
+
+        return $this->render(
+            '/administratie/lesBewerken.html.twig',
+            array('form' => $form->createView())
+        );
+    }
+
+    /**
+     * @Route("/administratie/lessen/verwijderen/{lesId}", name = "lesVerwijderen")
+     */
+    public function lesVerwijderenAction($lesId)
+    {
+        $les = $this->getDoctrine()
+            ->getRepository(Les::class)
+            ->find($lesId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($les);
+        $em->flush();
+
+        $this->addFlash("success", "De les is verwijderd!");
         return $this->redirectToRoute('admin');
     }
 }

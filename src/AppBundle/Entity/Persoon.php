@@ -86,6 +86,7 @@ class Persoon implements UserInterface,\Serializable
 
     /**
      * @ORM\OneToMany(targetEntity="Les", mappedBy="instructeur")
+     *
      */
     private $les;
 
@@ -250,4 +251,85 @@ class Persoon implements UserInterface,\Serializable
         $this->persoonsnummer = $persoonsnummer;
 
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGebruikersnaam()
+    {
+        return $this->gebruikersnaam;
+    }
+
+    /**
+     * @param mixed $gebruikersnaam
+     */
+    public function setGebruikersnaam($gebruikersnaam)
+    {
+        $this->gebruikersnaam = $gebruikersnaam;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWachtwoord()
+    {
+        return $this->wachtwoord;
+    }
+
+    /**
+     * @param mixed $wachtwoord
+     */
+    public function setWachtwoord($wachtwoord)
+    {
+        $this->wachtwoord = $wachtwoord;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisMember()
+    {
+        return $this->is_member;
+    }
+
+    /**
+     * @param mixed $is_member
+     */
+    public function setIsMember($is_member)
+    {
+        $this->is_member = $is_member;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisInstructeur()
+    {
+        return $this->is_instructeur;
+    }
+
+    /**
+     * @param mixed $is_instructeur
+     */
+    public function setIsInstructeur($is_instructeur)
+    {
+        $this->is_instructeur = $is_instructeur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLes()
+    {
+        return $this->les;
+    }
+
+    /**
+     * @param mixed $les
+     */
+    public function setLes($les)
+    {
+        $this->les = $les;
+    }
+
 }

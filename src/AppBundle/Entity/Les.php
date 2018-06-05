@@ -39,11 +39,13 @@ class Les implements \Serializable
 
     /**
      * @ORM\ManyToOne(targetEntity="Training", inversedBy="les")
+     * @ORM\JoinColumn(name="training_id", referencedColumnName="id")
      */
     private $training;
 
     /**
      * @ORM\ManyToOne(targetEntity="Persoon", inversedBy="les")
+     * @ORM\JoinColumn(name="instructeur_id", referencedColumnName="id")
      */
     private $instructeur;
 
