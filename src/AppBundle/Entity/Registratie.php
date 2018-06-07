@@ -35,7 +35,7 @@ class Registratie implements \serializable
     private $persoon;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Les", inversedBy="les")
+     * @ORM\ManyToOne(targetEntity="Les", inversedBy="registratie")
      */
     private $les;
 

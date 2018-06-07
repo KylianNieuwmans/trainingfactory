@@ -49,6 +49,11 @@ class Les implements \Serializable
      */
     private $instructeur;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Registratie", mappedBy="les")
+     */
+    private $registratie;
+
     public function serialize()
     {
         return serialize(array(
@@ -181,5 +186,22 @@ class Les implements \Serializable
     {
         $this->training = $training;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRegistratie()
+    {
+        return $this->registratie;
+    }
+
+    /**
+     * @param mixed $registratie
+     */
+    public function setRegistratie($registratie)
+    {
+        $this->registratie = $registratie;
+    }
+
 
 }

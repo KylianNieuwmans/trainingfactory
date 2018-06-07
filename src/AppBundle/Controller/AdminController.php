@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Les;
 use AppBundle\Entity\Persoon;
+use AppBundle\Entity\Registratie;
 use AppBundle\Form\LesType;
 use AppBundle\Form\PersoonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -181,5 +182,17 @@ class AdminController extends Controller
 
         $this->addFlash("success", "De les is verwijderd!");
         return $this->redirectToRoute('admin');
+    }
+
+    /**
+     * @Route("/administratie/lessen/bekijken/{lesId}", name = "lesBekijken")
+     */
+    public function lesBekijkenAction(Request $request, $lesId)
+    {
+        $registraties = $this->getDoctrine()
+            ->getRepository(Registratie::class)
+            ->getLes($lesId);
+
+        return $this->render('administratie/bekijklessen.html.twig',array('boodschap'=>'Welkom','registraties'=>$registraties));
     }
 }

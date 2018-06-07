@@ -90,6 +90,12 @@ class Persoon implements UserInterface,\Serializable
      */
     private $les;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Registratie", mappedBy="persoon")
+     *
+     */
+    private $registratie;
+
 
     public function serialize()
     {
@@ -331,5 +337,22 @@ class Persoon implements UserInterface,\Serializable
     {
         $this->les = $les;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRegistratie()
+    {
+        return $this->registratie;
+    }
+
+    /**
+     * @param mixed $registratie
+     */
+    public function setRegistratie($registratie)
+    {
+        $this->registratie = $registratie;
+    }
+
 
 }
