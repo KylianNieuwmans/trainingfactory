@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="text-center">
+        <img src="{{ asset('images.jpeg') }}" width="100px" height="100px">
+        <h1>Trainingfactory</h1>
+    </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('admin') }}">Trainingfactory</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="col-3"> <a href="{{ path('trainingen') }}">Trainingen</a></li>
+                <li class="col-3"> <a href="{{ path('beheerLessen') }}">Lessen</a></li>
+                <li class="col-3"> <a href="{{ path('leden') }}">Leden</a></li>
+                <li class="col-3"> <a href="{{ path('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <table class="table">
+        <th scope="col">Naam</th>
+        <th scope="col">Max Personen</th>
+        <th scope="col">Locatie</th>
+        <th scope="col">Tijd</th>
+        <th scope="col">Datum</th>
+        <th scope="col">Leerlingen Bekijken</th>
+        <th scope="col">Toevoegen</th>
+        <th scope="col">Wijzigen</th>
+        <th scope="col">Verwijderen</th>
+        {% for les in lessen %}
+            </tr>
+            <tr class="list">
+                <td class="list-item">{{ les.training.beschrijving}}</td>
+                <td class="list-item">{{ les.maxPersonen}}</td>
+                <td class="list-item">{{ les.locatie}}</td>
+                <td class="list-item">{{ les.tijd|date('H:i:s')}}</td>
+                <td class="list-item">{{ les.datum|date('d-m-y')}}</td>
+                <td class="list-item"><a href="{{ path('lesBekijken', {"lesId":les.id}) }}">Leerlingen bekijken</a></td>
+                <td class="list-item"><a href="{{ path('lesToevoegen', {"lesId":les.id}) }}">Toevoegen</a></td>
+                <td class="list-item"><a href="{{ path('lesBewerken', {"lesId":les.id}) }}">Wijzig</a></td>
+                <td class="list-item"><a href="{{ path('lesVerwijderen', {"lesId":les.id}) }}">Verwijderen</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

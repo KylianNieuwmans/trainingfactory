@@ -34,7 +34,7 @@ class Persoon implements UserInterface,\Serializable
     private $voornaam;
 
     /**
-     * @ORM\Column(type="string", length=8)
+     * @ORM\Column(type="string", length=8, nullable=true)
      */
     private $tussenvoegsel;
 
@@ -54,12 +54,12 @@ class Persoon implements UserInterface,\Serializable
      */
     private $startdatum;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $salaris;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
 
     private $persoonsnummer;
@@ -73,10 +73,28 @@ class Persoon implements UserInterface,\Serializable
      */
     private $woonplaats;
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="boolean", nullable=true)
      */
 
-    private $recht = array();
+    private $is_member;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+
+    private $is_instructeur;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Les", mappedBy="instructeur")
+     *
+     */
+    private $les;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Registratie", mappedBy="persoon")
+     *
+     */
+    private $registratie;
 
 
     public function serialize()
@@ -94,7 +112,7 @@ class Persoon implements UserInterface,\Serializable
             $this->id,
             $this->gebruikersnaam,
             $this->wachtwoord,
-            ) = $this->unserialize($serialized);
+            ) = unserialize($serialized);
 
 
     }
@@ -146,7 +164,7 @@ class Persoon implements UserInterface,\Serializable
 
     public function setAdres($adres)
     {
-        $this->adres = adres;
+        $this->adres = $adres;
     }
 
     public function getWoonplaats()
@@ -161,7 +179,17 @@ class Persoon implements UserInterface,\Serializable
 
     public function getRoles()
     {
-        return $this->recht;
+        $roles = ['ROLE_BEZOEKER'];
+        if($this->is_member)
+        {
+            $roles = ['ROLE_USER'];
+        }
+        if($this->is_instructeur)
+        {
+            $roles = ['ROLE_INSTRUCTEUR'];
+        }
+
+        return $roles;
     }
 
     public function getUsername()
@@ -229,4 +257,102 @@ class Persoon implements UserInterface,\Serializable
         $this->persoonsnummer = $persoonsnummer;
 
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGebruikersnaam()
+    {
+        return $this->gebruikersnaam;
+    }
+
+    /**
+     * @param mixed $gebruikersnaam
+     */
+    public function setGebruikersnaam($gebruikersnaam)
+    {
+        $this->gebruikersnaam = $gebruikersnaam;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWachtwoord()
+    {
+        return $this->wachtwoord;
+    }
+
+    /**
+     * @param mixed $wachtwoord
+     */
+    public function setWachtwoord($wachtwoord)
+    {
+        $this->wachtwoord = $wachtwoord;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisMember()
+    {
+        return $this->is_member;
+    }
+
+    /**
+     * @param mixed $is_member
+     */
+    public function setIsMember($is_member)
+    {
+        $this->is_member = $is_member;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisInstructeur()
+    {
+        return $this->is_instructeur;
+    }
+
+    /**
+     * @param mixed $is_instructeur
+     */
+    public function setIsInstructeur($is_instructeur)
+    {
+        $this->is_instructeur = $is_instructeur;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLes()
+    {
+        return $this->les;
+    }
+
+    /**
+     * @param mixed $les
+     */
+    public function setLes($les)
+    {
+        $this->les = $les;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegistratie()
+    {
+        return $this->registratie;
+    }
+
+    /**
+     * @param mixed $registratie
+     */
+    public function setRegistratie($registratie)
+    {
+        $this->registratie = $registratie;
+    }
+
+
 }
